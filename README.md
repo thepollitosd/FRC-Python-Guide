@@ -1,19 +1,22 @@
 # FRC-Python-Guide
-## Getting Started
-1. Install [Python for Windows](https://www.python.org/downloads/windows/)
-2. Install or Upgrade RobotPy
-- If you don't have RobotPy:
-	```shell
-	py  -3  -m  pip  install  robotpy
-	```
-- If you do have RobotPy:
-	```shell
-	py  -3  -m  pip  install  --upgrade  robotpy
-	```
-3. To start a project, type in `mkdir [Your Project Name Here]` to create the folder
-4. Next, type in `cd [Your Project Name Here]` to navigate to the folder
-5. To create the necessary files, type in `py  -3  -m  robotpy  init`. This will create `robot.py` and `pyproject.toml` files. You will write most of the code in `robot.py`, but for now, we will use pyproject.toml.
-6. Open pyproject.toml, and uncomment all requisites. Your code should look like this
+
+## Getting Started (A 10 Step Guide)
+
+1. Install Python:
+    1. Select the link for your OS: [Windows](https://www.python.org/downloads/windows/) | [MacOS](https://www.python.org/downloads/macos/) | [Linux](https://www.python.org/downloads/source/)
+    2. Under Python Releases for `[Your Operating System]`, click `Latest Python 3 Release - Python 3.13.3`. Any new version will work.
+    3. Open the file, and follow the setup instructions.
+2. Open the shell/terminal by searching in your operating system's search bar. The name for Windows is Command Prompt, and the name for MacOS is Terminal. In Linux, you need to do the keyboard shortcut `ctr + alt + t`.
+3. Install or Upgrade RobotPy
+
+- If you don't have RobotPy, type in `py  -3  -m  pip  install  --upgrade  robotpy`.
+- If you do have RobotPy, type in `py  -3  -m  pip  install  --upgrade  robotpy`.
+
+4. To start a project, type in `mkdir [Your Project Name Here]` to create the folder
+5. Next, type in `cd [Your Project Name Here]` to navigate to the folder
+6. To create the necessary files, type in `py  -3  -m  robotpy  init`. This will create `robot.py` and `pyproject.toml` files. You will write most of the code in `robot.py`, but for now, we will use pyproject.toml.
+7. Open pyproject.toml, and uncomment all requisites. Your code should look like this:
+
 ```toml
 [tool.robotpy]
 # Version of robotpy this project depends on
@@ -37,7 +40,9 @@ robotpy_extras = [
 # Other pip packages to install
 requires = []
 ```
-7. Copy this starter code, and paste it in `robot.py`:
+
+8. Copy this starter code, and paste it in `robot.py`:
+
 ```python
 #!/usr/bin/env python3
 #
@@ -73,7 +78,9 @@ class MyRobot(wpilib.TimedRobot):
 if __name__ == "__main__":
     wpilib.run(MyRobot)
 ```
-8. We need to set some constants for our ports and we need to import some libraries. To do this, write this code below `import wpilib`:
+
+9. We need to set some constants for our ports and we need to import some libraries. To do this, write this code below `import wpilib`:
+
 ```python
 import phoenix5
 import commands2
@@ -102,7 +109,9 @@ leftRearMotor = None
 rightFrontMotor = None
 rightRearMotor = None
 ```
+
 9. **Finished Code**:
+
 ```python
 #!/usr/bin/env python3
 #
@@ -163,5 +172,6 @@ class MyRobot(wpilib.TimedRobot):
 
 if __name__ == "__main__":
     wpilib.run(MyRobot)
-``` 
+```
+
 10. You are all caught up!
