@@ -26,38 +26,38 @@ Syntax is the set of rules and constructs that define how code is written in a p
 
 Python uses indentation to define code blocks, instead of brackets. The standard indentation is four spaces, although tabs and any other space size will work, as long as it is consistent. Each logical line of code must have the same indentation. The following code is an example of proper indentation.
 ```python
-    def function():
-        if True:
-            print("Hello World")
-            if False:
-                print("This won't run")
-        print("This will run")
+def function():
+    if True:
+        print("Hello World")
+        if False:
+            print("This won't run")
+    print("This will run")
 ```
 
 The following code is an example of improper indentation.
 ```python
-    def function():
-        if True:
-            print("Hello World")
-        if False:
-            print("This won't run")
-        print("This will run")
+def function():
+    if True:
+        print("Hello World")
+    if False:
+        print("This won't run")
+    print("This will run")
 ```
 ### Variables
 
 Variables are used to store data values. Python has no command for declaring a variable. A variable is created the moment you first assign a value to it. Variables do not need to be declared with any particular type, and can even change type after they have been set.
 ```python
-    x = 5
-    y = "John"
-    print(x)
-    print(y)
+x = 5
+y = "John"
+print(x)
+print(y)
 ```
 ### Comments
 
 Comments can be used to explain Python code. Comments can be used to make the code more readable. They can also be used to prevent execution when testing code.
 ```python
-    #This is a comment.
-    print("Hello, World!") #This is also a comment.
+#This is a comment.
+print("Hello, World!") #This is also a comment.
 ```
 ### Data Types
 
@@ -75,71 +75,71 @@ Python has the following data types built-in by default, in these categories:
 
 Strings in Python are surrounded by either single quotation marks, or double quotation marks.
 ```python
-    x = "Hello World"
-    # is the same as
-    x = 'Hello World'
+x = "Hello World"
+# is the same as
+x = 'Hello World'
 ```
 
 Strings can be output to screen using the `print()` function.
 ```python
-    x = "Hello World"
-    print(x)
+x = "Hello World"
+print(x)
 ```
 
 ### Numbers
 
 Python supports two types of numbers - integers and floating point numbers. (It also supports complex numbers, which will not be explained in this document.) To define an integer, use the following syntax:
 ```python
-    x = 1
-    y = 35656222554887711
-    z = -3255522
+x = 1
+y = 35656222554887711
+z = -3255522
 ```
 
 To define a floating point number, you may use one of the following notations:
 ```python
-    x = 1.10
-    y = 1.0
-    z = -35.59
-    a = 35e3
-    b = 12E4
-    c = -87.7e100
+x = 1.10
+y = 1.0
+z = -35.59
+a = 35e3
+b = 12E4
+c = -87.7e100
 ```
 
 ### Booleans
 
 Booleans represent one of two values: `True` or `False`.
 ```python
-    print(10 > 9)
-    print(10 == 9)
-    print(10 < 9)
+print(10 > 9)
+print(10 == 9)
+print(10 < 9)
 ```
 
 ### Casting
 
 If you want to specify the data type of a variable, this can be done with casting.
 ```python
-    x = str(3)    # x will be '3'
-    y = int(3)    # y will be 3
-    z = float(3)  # z will be 3.0
+x = str(3)    # x will be '3'
+y = int(3)    # y will be 3
+z = float(3)  # z will be 3.0
 ```
 
 ### Getting the Type
 
 You can get the data type of a variable with the `type()` function.
 ```python
-    x = 5
-    y = "John"
-    print(type(x))
-    print(type(y))
+x = 5
+y = "John"
+print(type(x))
+print(type(y))
 ```
 
 ### Setting the Specific Type
 
 You can specify the data type with the following constructor functions:
 ```python
-    x = str("s1") # x will be 's1'
-    y = int(2)    # y will be 2
-    z = float(3.0)# z will be 3.0
+x = str("s1") # x will be 's1'
+y = int(2)    # y will be 2
+z = float(3.0)# z will be 3.0
 ```
 
 # Electronics
