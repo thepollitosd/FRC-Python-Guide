@@ -111,15 +111,6 @@ morning_command(breakfast, driver, weather)
 
 ---
 
-## So What’s the Takeaway?
-
-| Model             | Good For                     | Not Great For                 |
-| ----------------- | ---------------------------- | ----------------------------- |
-| **Timed-Based**   | Simple, small tasks          | Complex, multitasking logic   |
-| **Command-Based** | Organized, scalable projects | Quick experiments or one-offs |
-
----
-
 ## In FRC Terms...
 
 * **Timed-Based** = You drive the robot by hand-writing everything.
@@ -127,6 +118,11 @@ morning_command(breakfast, driver, weather)
 
 ---
 
-**Next Step**: Now that you get the idea, we’ll start introducing real robot subsystems like drivetrain and shooter—but still in this same clear, modular style.
+## What’s the Takeaway?
 
-Let’s keep building your Python powers, one command at a time! 🐍💪
+Timed-Based is good for simple, small tasks but not ideal for complex, multitasking logic
+Command-Based is good for organized, scalable projects but not ideal for quick experiments or one-offs
+
+Why do we use command based?
+
+To ***organize*** and to ***scale***
