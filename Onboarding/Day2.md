@@ -124,11 +124,11 @@ Timed-Based is good for simple, small tasks but not ideal for complex, multitask
 
 Command-Based is good for organized, scalable projects but not ideal for quick experiments or one-offs
 
-Why do we use command based?
+### Why do we use command based?
 
 To ***organize*** and to ***scale***
 
-# Project
+# Project Code Completed
 
 ```python
 import wpilib
