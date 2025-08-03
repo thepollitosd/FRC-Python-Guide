@@ -121,6 +121,7 @@ morning_command(breakfast, driver, weather)
 ## What’s the Takeaway?
 
 Timed-Based is good for simple, small tasks but not ideal for complex, multitasking logic
+
 Command-Based is good for organized, scalable projects but not ideal for quick experiments or one-offs
 
 Why do we use command based?
