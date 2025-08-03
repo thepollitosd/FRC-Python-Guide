@@ -131,9 +131,11 @@ To ***organize*** and to ***scale***
 # Project Code Completed
 
 ```python
+# robot.py
 import wpilib
 from wpilib import TimedRobot, XboxController, Joystick, Encoder
 from ctre import WPI_TalonSRX  # Use robotpy's CTRE bindings for TalonSRX
+import helpers as h
 
 # Hardware port assignments (replace with your actual wiring as needed)
 gameControllerPort = 0
@@ -147,9 +149,6 @@ LFMCPort = 1  # Left Front Motor Controller port (CAN ID)
 LRMCPort = 2  # Left Rear Motor Controller port
 RFMCPort = 3  # Right Front Motor Controller port
 RRMCPort = 4  # Right Rear Motor Controller port
-
-def calculateTicks(autoDistance,wheelSize,ticksPerRevolution):
-    return round((autoDistance/(wheelSize*3.1415))*ticksPerRevolution)
 
 class MyRobot(TimedRobot):
     def robotInit(self):
@@ -178,11 +177,11 @@ class MyRobot(TimedRobot):
         self.autoDone = False
 
     def autonomousPeriodic(self):
-        tickCalc = calculateTicks(5,0.127,8192)
+        h.calculateTicks(5,0.127,8192)
         
         # Simple autonomous: drive forward until encoder reaches calculated number of ticks
         if not self.autoDone:
-            if self.encoder.get() < tickCalc:
+            if self.encoder.get() < h.calculateTicks(5,0.127,8192):
                 self.leftFrontMotor.set(0.5)
                 self.leftRearMotor.set(0.5)
                 self.rightFrontMotor.set(0.5)
@@ -216,3 +215,7 @@ class MyRobot(TimedRobot):
 if __name__ == "__main__":
     wpilib.run(MyRobot)
 ```
+```python
+#helpers.py
+def calculateTicks(autoDistance,wheelSize,ticksPerRevolution):
+    return round((autoDistance/(wheelSize*3.1415))*ticksPerRevolution)
