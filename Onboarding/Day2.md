@@ -222,3 +222,44 @@ if __name__ == "__main__":
 # helpers.py
 def calculateTicks(autoDistance,wheelSize,ticksPerRevolution):
     return round((autoDistance/(wheelSize*3.1415))*ticksPerRevolution)
+```
+
+
+
+```toml
+# pyproject.toml
+[project]
+name = "frc0-robot"
+version = "0.1.0"
+description = "FRC robot code using RobotPy and CTRE TalonSRX motor controllers"
+authors = [
+    { name = "thepollitosd" }
+]
+dependencies = [
+    # Add any non-RobotPy Python dependencies here if needed
+]
+
+[tool.robotpy]
+robotpy_version = "2025.3.2.1"
+robotpy_extras = [
+    "all",
+    "apriltag",
+    "commands2",
+    "cscore",
+    "navx",
+    "pathplannerlib",
+    "phoenix5",
+    "phoenix6",
+    "rev",
+    "romi",
+    "sim",
+    "xrp",
+]
+requires = []
+
+[tool.robotpy-build]
+robotpy = true
+
+[tool.robotpy]
+main = "robot.py"
+```
