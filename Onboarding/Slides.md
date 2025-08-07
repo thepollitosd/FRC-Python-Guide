@@ -145,7 +145,7 @@ morning_command(breakfast, driver, weather)
 
 ---
 
-## Slide 11: Step 7 — Project Configuration
+## Slide 11: Step 1 — Project Configuration
 
 **Explain:**
 - `pyproject.toml` defines project settings, dependencies, and RobotPy extras.
@@ -179,9 +179,9 @@ robotpy = true
 main = "robot.py"
 ```
 
----3
+---
 
-## Slide 12: Step 1 — Imports and Setup
+## Slide 12: Step 2 — Imports and Setup
 
 **Explain:**
 - Why imports matter (libraries for robot hardware, controllers, math, etc.)
@@ -198,7 +198,7 @@ import helpers as h            # Custom helper functions
 
 ---
 
-## Slide 13: Step 2 — Hardware Port Assignments
+## Slide 13: Step 3 — Hardware Port Assignments
 
 **Explain:**
 - Assign each hardware device to a port (wiring matches code).
@@ -221,7 +221,7 @@ RRMCPort = 4  # Right Rear Motor Controller port
 
 ---
 
-## Slide 14: Step 3 — Controller and Motor Initialization
+## Slide 14: Step 4 — Controller and Motor Initialization
 
 **Explain:**
 - Create controller/motor objects.
@@ -252,7 +252,23 @@ class MyRobot(TimedRobot):
 
 ---
 
-## Slide 15: Step 4 — Autonomous Mode Logic
+## Slide 15: Step 5 — Helper Function for Encoder Ticks
+
+**Explain:**
+- Converts distance to encoder ticks (important for autonomous).
+
+**Code (`helpers.py`):**
+```python
+def calculateTicks(autoDistance, wheelSize, ticksPerRevolution):
+    # autoDistance: meters to travel
+    # wheelSize: wheel diameter in meters
+    # ticksPerRevolution: encoder ticks per full wheel turn
+    return round((autoDistance/(wheelSize*3.1415))*ticksPerRevolution)
+```
+
+---
+
+## Slide 16: Step 6 — Autonomous Mode Logic
 
 **Explain:**
 - Reset encoder, drive forward for a set distance using helper function.
@@ -282,7 +298,7 @@ class MyRobot(TimedRobot):
 
 ---
 
-## Slide 16: Step 5 — Teleop Mode Logic
+## Slide 17: Step 7 — Teleop Mode Logic
 
 **Explain:**
 - Tank drive: left joystick for left motors, right for right.
@@ -297,22 +313,6 @@ class MyRobot(TimedRobot):
         self.leftRearMotor.set(leftSpeed)
         self.rightFrontMotor.set(rightSpeed)
         self.rightRearMotor.set(rightSpeed)
-```
-
----
-
-## Slide 17: Step 6 — Helper Function for Encoder Ticks
-
-**Explain:**
-- Converts distance to encoder ticks (important for autonomous).
-
-**Code (`helpers.py`):**
-```python
-def calculateTicks(autoDistance, wheelSize, ticksPerRevolution):
-    # autoDistance: meters to travel
-    # wheelSize: wheel diameter in meters
-    # ticksPerRevolution: encoder ticks per full wheel turn
-    return round((autoDistance/(wheelSize*3.1415))*ticksPerRevolution)
 ```
 
 ---
