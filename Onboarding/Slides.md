@@ -564,6 +564,3 @@ if __name__ == "__main__":
 - Timed vs. Command-based: choose model to fit robot/team complexity.
 - Step-by-step building ensures understanding and easier debugging.
 
----
-
-Let me know if you want this pushed directly to your repository, or if you need further edits!
