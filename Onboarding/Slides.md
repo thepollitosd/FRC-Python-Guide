@@ -145,143 +145,7 @@ morning_command(breakfast, driver, weather)
 
 ---
 
-## Slide 11: Step 1 — Imports and Setup
-
-**Explain:**
-- Why imports matter (libraries for robot hardware, controllers, math, etc.)
-- Overview of files (`robot.py`, `helpers.py`, `pyproject.toml`).
-
-**Code:**
-```python
-# robot.py
-import wpilib
-from wpilib import TimedRobot, XboxController, Joystick, Encoder
-from ctre import WPI_TalonSRX  # CTRE TalonSRX motor controller support
-import helpers as h            # Custom helper functions
-```
-
----
-
-## Slide 12: Step 2 — Hardware Port Assignments
-
-**Explain:**
-- Assign each hardware device to a port (wiring matches code).
-
-**Code:**
-```python
-# Port numbers for controllers and motors
-gameControllerPort = 0
-joystickOnePort = 1
-joystickTwoPort = 2
-
-encoderChannelA = 0
-encoderChannelB = 1
-
-LFMCPort = 1  # Left Front Motor Controller port
-LRMCPort = 2  # Left Rear Motor Controller port
-RFMCPort = 3  # Right Front Motor Controller port
-RRMCPort = 4  # Right Rear Motor Controller port
-```
-
----
-
-## Slide 13: Step 3 — Controller and Motor Initialization
-
-**Explain:**
-- Create controller/motor objects.
-- Set up inversion for correct drive direction.
-
-**Code:**
-```python
-class MyRobot(TimedRobot):
-    def robotInit(self):
-        self.gameControllerOne = XboxController(gameControllerPort)
-        self.joystickOne = Joystick(joystickOnePort)
-        self.joystickTwo = Joystick(joystickTwoPort)
-
-        self.leftFrontMotor = WPI_TalonSRX(LFMCPort)
-        self.leftRearMotor = WPI_TalonSRX(LRMCPort)
-        self.rightFrontMotor = WPI_TalonSRX(RFMCPort)
-        self.rightRearMotor = WPI_TalonSRX(RRMCPort)
-
-        # Encoder setup
-        self.encoder = Encoder(encoderChannelA, encoderChannelB)
-
-        # Motor inversion for correct direction
-        self.leftFrontMotor.setInverted(False)
-        self.leftRearMotor.setInverted(False)
-        self.rightFrontMotor.setInverted(True)
-        self.rightRearMotor.setInverted(True)
-```
-
----
-
-## Slide 14: Step 4 — Autonomous Mode Logic
-
-**Explain:**
-- Reset encoder, drive forward for a set distance using helper function.
-
-**Code:**
-```python
-    def autonomousInit(self):
-        self.encoder.reset()
-        self.autoDone = False
-
-    def autonomousPeriodic(self):
-        # Drive until encoder reaches the target ticks
-        if not self.autoDone:
-            if self.encoder.get() < h.calculateTicks(5, 0.127, 8192):
-                self.leftFrontMotor.set(0.5)
-                self.leftRearMotor.set(0.5)
-                self.rightFrontMotor.set(0.5)
-                self.rightRearMotor.set(0.5)
-            else:
-                self.leftFrontMotor.set(0.0)
-                self.leftRearMotor.set(0.0)
-                self.rightFrontMotor.set(0.0)
-                self.rightRearMotor.set(0.0)
-                self.autoDone = True
-```
-- **Key point:** Use encoder ticks to measure distance.
-
----
-
-## Slide 15: Step 5 — Teleop Mode Logic
-
-**Explain:**
-- Tank drive: left joystick for left motors, right for right.
-
-**Code:**
-```python
-    def teleopPeriodic(self):
-        leftSpeed = self.joystickOne.getY()
-        rightSpeed = self.joystickTwo.getY()
-
-        self.leftFrontMotor.set(leftSpeed)
-        self.leftRearMotor.set(leftSpeed)
-        self.rightFrontMotor.set(rightSpeed)
-        self.rightRearMotor.set(rightSpeed)
-```
-
----
-
-## Slide 16: Step 6 — Helper Function for Encoder Ticks
-
-**Explain:**
-- Converts distance to encoder ticks (important for autonomous).
-
-**Code (`helpers.py`):**
-```python
-def calculateTicks(autoDistance, wheelSize, ticksPerRevolution):
-    # autoDistance: meters to travel
-    # wheelSize: wheel diameter in meters
-    # ticksPerRevolution: encoder ticks per full wheel turn
-    return round((autoDistance/(wheelSize*3.1415))*ticksPerRevolution)
-```
-
----
-
-## Slide 17: Step 7 — Project Configuration
+## Slide 11: Step 7 — Project Configuration
 
 **Explain:**
 - `pyproject.toml` defines project settings, dependencies, and RobotPy extras.
@@ -313,6 +177,142 @@ robotpy = true
 
 [tool.robotpy]
 main = "robot.py"
+```
+
+---3
+
+## Slide 12: Step 1 — Imports and Setup
+
+**Explain:**
+- Why imports matter (libraries for robot hardware, controllers, math, etc.)
+- Overview of files (`robot.py`, `helpers.py`, `pyproject.toml`).
+
+**Code:**
+```python
+# robot.py
+import wpilib
+from wpilib import TimedRobot, XboxController, Joystick, Encoder
+from ctre import WPI_TalonSRX  # CTRE TalonSRX motor controller support
+import helpers as h            # Custom helper functions
+```
+
+---
+
+## Slide 13: Step 2 — Hardware Port Assignments
+
+**Explain:**
+- Assign each hardware device to a port (wiring matches code).
+
+**Code:**
+```python
+# Port numbers for controllers and motors
+gameControllerPort = 0
+joystickOnePort = 1
+joystickTwoPort = 2
+
+encoderChannelA = 0
+encoderChannelB = 1
+
+LFMCPort = 1  # Left Front Motor Controller port
+LRMCPort = 2  # Left Rear Motor Controller port
+RFMCPort = 3  # Right Front Motor Controller port
+RRMCPort = 4  # Right Rear Motor Controller port
+```
+
+---
+
+## Slide 14: Step 3 — Controller and Motor Initialization
+
+**Explain:**
+- Create controller/motor objects.
+- Set up inversion for correct drive direction.
+
+**Code:**
+```python
+class MyRobot(TimedRobot):
+    def robotInit(self):
+        self.gameControllerOne = XboxController(gameControllerPort)
+        self.joystickOne = Joystick(joystickOnePort)
+        self.joystickTwo = Joystick(joystickTwoPort)
+
+        self.leftFrontMotor = WPI_TalonSRX(LFMCPort)
+        self.leftRearMotor = WPI_TalonSRX(LRMCPort)
+        self.rightFrontMotor = WPI_TalonSRX(RFMCPort)
+        self.rightRearMotor = WPI_TalonSRX(RRMCPort)
+
+        # Encoder setup
+        self.encoder = Encoder(encoderChannelA, encoderChannelB)
+
+        # Motor inversion for correct direction
+        self.leftFrontMotor.setInverted(False)
+        self.leftRearMotor.setInverted(False)
+        self.rightFrontMotor.setInverted(True)
+        self.rightRearMotor.setInverted(True)
+```
+
+---
+
+## Slide 15: Step 4 — Autonomous Mode Logic
+
+**Explain:**
+- Reset encoder, drive forward for a set distance using helper function.
+
+**Code:**
+```python
+    def autonomousInit(self):
+        self.encoder.reset()
+        self.autoDone = False
+
+    def autonomousPeriodic(self):
+        # Drive until encoder reaches the target ticks
+        if not self.autoDone:
+            if self.encoder.get() < h.calculateTicks(5, 0.127, 8192):
+                self.leftFrontMotor.set(0.5)
+                self.leftRearMotor.set(0.5)
+                self.rightFrontMotor.set(0.5)
+                self.rightRearMotor.set(0.5)
+            else:
+                self.leftFrontMotor.set(0.0)
+                self.leftRearMotor.set(0.0)
+                self.rightFrontMotor.set(0.0)
+                self.rightRearMotor.set(0.0)
+                self.autoDone = True
+```
+- **Key point:** Use encoder ticks to measure distance.
+
+---
+
+## Slide 16: Step 5 — Teleop Mode Logic
+
+**Explain:**
+- Tank drive: left joystick for left motors, right for right.
+
+**Code:**
+```python
+    def teleopPeriodic(self):
+        leftSpeed = self.joystickOne.getY()
+        rightSpeed = self.joystickTwo.getY()
+
+        self.leftFrontMotor.set(leftSpeed)
+        self.leftRearMotor.set(leftSpeed)
+        self.rightFrontMotor.set(rightSpeed)
+        self.rightRearMotor.set(rightSpeed)
+```
+
+---
+
+## Slide 17: Step 6 — Helper Function for Encoder Ticks
+
+**Explain:**
+- Converts distance to encoder ticks (important for autonomous).
+
+**Code (`helpers.py`):**
+```python
+def calculateTicks(autoDistance, wheelSize, ticksPerRevolution):
+    # autoDistance: meters to travel
+    # wheelSize: wheel diameter in meters
+    # ticksPerRevolution: encoder ticks per full wheel turn
+    return round((autoDistance/(wheelSize*3.1415))*ticksPerRevolution)
 ```
 
 ---
